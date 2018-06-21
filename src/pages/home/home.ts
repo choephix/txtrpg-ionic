@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { GameState } from '../../providers/gamestate';
 
 @Component({
   selector: 'page-home',
@@ -7,7 +7,9 @@ import { NavController } from 'ionic-angular';
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController) {
-    
+  constructor( public game:GameState ) {}
+
+  ionViewDidEnter() {
+    this.game.start();
   }
 }
