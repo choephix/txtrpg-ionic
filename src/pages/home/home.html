@@ -1,9 +1,23 @@
 <ion-content padding>
-	<h3>
-		{{game.journal[game.journal_index]}}
-	</h3>
-  <p></p>
-  <ion-item *ngFor="let option of game.options; let i = index" (tap)="game.selectOption(i)">
-    {{option.link_text}}
-  </ion-item>
+
+  <ion-card style="min-height: 20%">
+    <ion-card-content>
+      <ion-item text-wrap>
+      	{{game.journal[game.journal_index]}}
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+  
+  <ion-card>
+    <ion-card-content>
+      <ion-item-group>
+        <ion-list lines>
+          <ion-item ion-item *ngFor="let option of game.options; let i = index" (tap)="game.selectOption(i)">
+            {{option.link_text}}
+          </ion-item>
+        </ion-list>
+      </ion-item-group>
+    </ion-card-content>
+  </ion-card>
+
 </ion-content>

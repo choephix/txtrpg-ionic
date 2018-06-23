@@ -17,6 +17,7 @@ export class GameState {
         { link_text : "Look around", on_chosen : ()=>this.inspect() },
         { link_text : "Go back to sleep", on_chosen : ()=>this.sleep() },
         { link_text : "...", on_chosen : ()=>{} },
+        { link_text : "(Reflect on your life)", on_chosen : ()=>this.test() },
       ]
     )
   }
@@ -24,6 +25,10 @@ export class GameState {
   getLastJournalEntry():string
   {
     return this.journal[this.journal_index]
+  }
+  
+  test():void {
+    this.addJournalEntry("In facilisis scelerisque dui vel dignissim. Sed nunc orci, ultricies congue vehicula quis, facilisis a orci. In aliquet facilisis condimentum. Donec at orci orci, a dictum justo. Sed a nunc non lectus fringilla suscipit. Vivamus pretium sapien sit amet mauris aliquet eleifend vel vitae arcu. Fusce pharetra dignissim nisl egestas pretium.")
   }
 
   inspect():void {
