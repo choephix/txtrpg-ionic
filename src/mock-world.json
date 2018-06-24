@@ -15,7 +15,7 @@
       "actions":[
         {  
           "handle":"Go to sleep",
-          "on_do":["You sleep.","And you sleep.","And...","You wake up in a room."]
+          "on_do":["You go to sleep.","And you sleep.","And...","You wake up in a room."]
         }
       ],
       "exits":[  
