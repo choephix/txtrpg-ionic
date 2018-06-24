@@ -29,6 +29,12 @@
     "n2000":{  
       "title":"Tehtropgia streets",
       "on_first_entry":"Streets of Tehtropgia are full of nothing.\nThere are two houses on both sides of the road I'm standing on.",
+      "actions":[
+        {  
+          "handle":"Look at your shoes",
+          "on_do":["You look at your shoes. You have two.\nWhat a life."]
+        }
+      ],
       "exits":[  
         {  
           "node":"n1000",
@@ -45,6 +51,20 @@
     "n3000":{  
       "title":"the Carrots shop",
       "on_first_entry":"Nuffin but carrots and oranges here.\nThe smell of fresh juice is not at all unpleasant though...",
+      "actions":[
+        {  
+          "handle":"Inspect le carrots",
+          "on_do":["Look at dem fine carrots.","Fresh, fresh carrots.","Fuck you, carrots.","Peace."]
+        },
+        {  
+          "handle":"Inspect le oranges",
+          "on_do":["- Such many orange -","- Much fruit -","- Wow -","- Amaze -"]
+        },
+        {  
+          "handle":"Inspect le cockroach on ze floor",
+          "on_do":["You take a closer look at a half-squished cockroach on the floor.","It's pretty dead.","Aaaargh!","It's almost dead..."]
+        }
+      ],
       "exits":[  
         {  
           "node":"n2000",
