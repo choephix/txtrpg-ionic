@@ -1,17 +1,41 @@
-<ion-content padding>
-
+<ion-content no-padding>
+  
+  <!--<ion-card style="min-height: 20%">-->
+  <!--  <ion-card-content>-->
+  <!--    <ion-scroll #scr style="height:100px">-->
+  <!--      <ion-list lines>-->
+  <!--        <ion-item ion-item *ngFor="let entry of game.journal; let i = index">-->
+  <!--          <pre>{{entry}}</pre>-->
+  <!--        </ion-item>-->
+  <!--      </ion-list>-->
+  <!--    </ion-scroll>-->
+  <!--  </ion-card-content>-->
+  <!--</ion-card>-->
+  
+  <!--<ion-card style="min-height: 20%">-->
+  <!--  <ion-card-content>-->
+      <!--<ion-content #jcontent style="height:100px">-->
+      <!--  <pre *ngFor="let entry of game.journal;">{{entry}}</pre>-->
+      <!--</ion-content>-->
+  <!--  </ion-card-content>-->
+  <!--</ion-card>-->
+  
   <ion-card style="min-height: 20%">
     <ion-card-content>
-      <ion-item text-wrap>
-      	{{game.journal[game.journal_index]}}
-      </ion-item>
+      <div style="height:400px; position: relative;" >
+        <div style="position: absolute; bottom: 10px;">
+          <pre *ngFor="let entry of game.journal;" style="color:#999">{{entry}}</pre>
+          <pre>{{game.current_journal_entry}}</pre>
+        </div>
+      </div>
     </ion-card-content>
   </ion-card>
+  
   
   <ion-card>
     <ion-card-content>
       <ion-item-group>
-        <ion-list lines>
+        <ion-list>
           <ion-item ion-item *ngFor="let option of game.options; let i = index" (tap)="game.selectOption(i)">
             {{option.link_text}}
           </ion-item>
@@ -19,5 +43,5 @@
       </ion-item-group>
     </ion-card-content>
   </ion-card>
-
+  
 </ion-content>

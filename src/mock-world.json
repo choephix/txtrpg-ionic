@@ -1,51 +1,60 @@
-
-{
-    "start": {
-        "node":"n1000",
-        "report":"You spawn in a room."
-    },
-    
-    "nodes":[
-        "n1000":
-        {
-            "title":"A room",
-            "on_first_entry":"It's an empty room, but for a single wooden door."
-            "exits":
-            [
-                { 
-                    "node":"n2000", 
-                    "handle":"Open the door",
-                    "on_go":"I opened the door and stepped outside." 
-                }
-            ]
-        },
-        "n2000":
-        {
-            "title":"Tehtropgia streets"
-            "on_first_entry":"Streets of Tehtropgia are full of nothing.\nThere are two houses on both sides of the road I'm standing on."
-            "exits":
-            [
-                { "node":"n1000", "handle":"Enter the blue house", "on_go":"I opened the door and stepped inside." }
-                { "node":"n3000", "handle":"Enter the orange house", "on_go":"I opened the door and stepped inside." }
-            ]
-        },
-        "n3000":
-        {
-            "title":"Carrots shop"
-            "on_first_entry":"Nuffin but carrots and oranges here.\nThe smell of fresh juice is not at all unpleasant though..."
-            "exits":
-            [
-                {
-                    "node":"n2000", 
-                    "handle":"Exit the shop",
-                    "on_go":"I opened the door and stepped outside." 
-                }
-            ]
+{  
+  "start":{  
+    "node":"n1000",
+    "report":"You wake up in a room."
+  },
+  "nodes":{  
+    "n1000":{  
+      "title":"a room",
+      "on_first_entry":"It's an empty room, but for a single wooden door.",
+      "on_look":[
+        "It's still just a stupid room",
+        "Same as before.\nWhy do I keep coming here?",
+        "What a room!"
+      ],
+      "actions":[
+        {  
+          "handle":"Go to sleep",
+          "on_do":["You sleep.","And you sleep.","And...","You wake up in a room."]
         }
-    ],
-    
-    "global":
-    {
-        "time":0.0
+      ],
+      "exits":[  
+        {  
+          "node":"n2000",
+          "handle":"Open the door",
+          "on_go":"I opened the door and stepped outside."
+        }
+      ]
+    },
+    "n2000":{  
+      "title":"Tehtropgia streets",
+      "on_first_entry":"Streets of Tehtropgia are full of nothing.\nThere are two houses on both sides of the road I'm standing on.",
+      "exits":[  
+        {  
+          "node":"n1000",
+          "handle":"Enter the blue house",
+          "on_go":"I opened the door and stepped inside."
+        },
+        {  
+          "node":"n3000",
+          "handle":"Enter the orange house",
+          "on_go":"I opened the door and stepped inside."
+        }
+      ]
+    },
+    "n3000":{  
+      "title":"the Carrots shop",
+      "on_first_entry":"Nuffin but carrots and oranges here.\nThe smell of fresh juice is not at all unpleasant though...",
+      "exits":[  
+        {  
+          "node":"n2000",
+          "handle":"Exit the shop",
+          "on_go":"I opened the door and stepped outside."
+        }
+      ]
     }
+  },
+  "global":{  
+    "time":0.0
+  }
 }

@@ -1,41 +1,61 @@
-import { Injectable } from '@angular/core';
+import { Injectable  } from '@angular/core';
 
 @Injectable()
 export class GameState {
-
-  journal:string[] = [""];
-  journal_index:number = 0;
+  
+  public on_change:()=>void;
+  
+  journal:string[] = [];
+  current_journal_entry:string;
 
   options:Option[] = []
-
-  constructor() {}
-
-  start():void {
-    this.addJournalEntry("You wake up in a room.")
-    this.setOptions(
-      [
-        { link_text : "Look around", on_chosen : ()=>this.inspect() },
-        { link_text : "Go back to sleep", on_chosen : ()=>this.sleep() },
-        { link_text : "...", on_chosen : ()=>{} },
-        { link_text : "(Reflect on your life)", on_chosen : ()=>this.test() },
-      ]
-    )
+  
+  context = null;
+  
+  current_node_id:string = null;
+  
+  public start(data:object):void {
+    
+    this.context = data;
+    console.log("Context:",this.context);
+    
+    this.addJournalEntry(this.context.start.report);
+    
+    this.enterNode(this.context.start.node);
   }
 
-  getLastJournalEntry():string
-  {
-    return this.journal[this.journal_index]
+  getLastJournalEntry():string { return this.journal[this.journal_index] }
+  
+  private reset():void {
+    
+    this.enterNode( this.current_node_id );
   }
   
-  test():void {
-    this.addJournalEntry("In facilisis scelerisque dui vel dignissim. Sed nunc orci, ultricies congue vehicula quis, facilisis a orci. In aliquet facilisis condimentum. Donec at orci orci, a dictum justo. Sed a nunc non lectus fringilla suscipit. Vivamus pretium sapien sit amet mauris aliquet eleifend vel vitae arcu. Fusce pharetra dignissim nisl egestas pretium.")
-  }
-
-  inspect():void {
-    let a = ["It's a nice room.","It's not a big room","Not much is in this room","Is that a door?\nNo.\nI think it's somebody's umbrella.\n\nI hate pickles..."]
-    let i = Math.floor(Math.random()*a.length)
+  private enterNode( node_id:string ):void {
     
-    this.addJournalEntry(a[(i)])
+    this.current_node_id = node_id
+    
+    let node_data = this.context.nodes[node_id];
+    
+    this.addJournalEntry(node_data.on_first_entry);
+    
+    let options = [];
+    
+    if ( "on_look" in node_data )
+      options.push( { link_text : "Inspect "+node_data.title, on_chosen : ()=>this.addJournalEntry(node_data.on_look) } );
+    
+    for ( let exit of node_data.exits )
+    {
+      options.push( { 
+        link_text : exit.handle as string, 
+        on_chosen : ()=>this.enterNode( exit.node ) 
+      } )
+    }
+    
+    options.push( { link_text : "...", on_chosen : ()=>{} } );
+    options.push( { link_text : "(Reflect on your life)", on_chosen : ()=>this.sleep() } );
+      
+    this.setOptions( options );
   }
 
   sleep():void {
@@ -62,16 +82,21 @@ export class GameState {
       $this.addJournalEntry("And...")
       $this.setOptions(
         [
-          { link_text : ">>", on_chosen : ()=>$this.start() },
+          { link_text : ">>", on_chosen : ()=>$this.reset() },
         ]
       )
     }
   }
 
   addJournalEntry(s:string):void {
-    this.journal.push(s)
-    this.journal_index++
-    console.log(s)
+    
+    if( this.current_journal_entry != undefined )
+      this.journal.push(this.current_journal_entry)
+    this.current_journal_entry = s;
+    console.log(":: " + s)
+    
+    try { this.on_change() }
+    catch(e) { console.log(e) }
   }
 
   setOptions(list:Option[]):void {
