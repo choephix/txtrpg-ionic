@@ -1,60 +1,76 @@
 {  
   "start":{  
     "node":"n1000",
-    "report":"You wake up in a room."
+    "report":"I woke up in a room."
   },
   "nodes":{  
     "n1000":{  
       "title":"a room",
-      "on_first_entry":"It's an empty room, but for a single wooden door.",
+      "on_enter_first_time": "I find myself in a room, entirely empty but for a single wooden door at one side.",
+      "on_enter": [
+        "I'm back in that empty room."
+      ],
       "on_look":[
         "It's still just a stupid room",
         "Same as before.\nWhy do I keep coming here?",
-        "What a room!"
+        "Whoa! A room!"
       ],
       "actions":[
         {  
           "handle":"Go to sleep",
-          "on_do":["You go to sleep.","And you sleep.","And...","You wake up in a room."]
+          "on_do":["I went to sleep and splept.","And then I slept.","And then...","I woke up in a room."]
         }
       ],
       "exits":[  
         {  
           "node":"n2000",
           "handle":"Open the door",
-          "on_go":"I opened the door and stepped outside."
+          "on_go":"I opened the door and stepped confusedly outside."
         }
       ]
     },
     "n2000":{  
       "title":"Tehtropgia streets",
-      "on_first_entry":"Streets of Tehtropgia are full of nothing.\nThere are two houses on both sides of the road I'm standing on.",
+      "on_enter_first_time":"Streets of Tehtropgia are full of nothing.\nThere are two houses on both sides of the road I'm standing on.",
+      "on_enter": [
+        "Back to the streets."
+      ],
       "actions":[
         {  
-          "handle":"Look at your shoes",
-          "on_do":["You look at your shoes. You have two.\nWhat a life."]
+          "handle":"Look at my shoes",
+          "on_do":["I look at my shoes. I have two.\nWhat a life."]
         }
       ],
       "exits":[  
         {  
           "node":"n1000",
           "handle":"Enter the blue house",
-          "on_go":"I opened the door and stepped inside."
+          "on_go":"I opened the door and stepped inside the blue building."
         },
         {  
           "node":"n3000",
           "handle":"Enter the orange house",
-          "on_go":"I opened the door and stepped inside."
+          "on_go":"I opened the door and stepped inside the orange building."
         }
       ]
     },
     "n3000":{  
       "title":"the Carrots shop",
-      "on_first_entry":"Nuffin but carrots and oranges here.\nThe smell of fresh juice is not at all unpleasant though...",
+      "on_enter_first_time":"Nuffin but carrots and oranges here.\nThe smell of fresh juice is not at all unpleasant though...",
+      "on_enter": [
+        "Am I getting hungry?"
+      ],
       "actions":[
         {  
           "handle":"Inspect le carrots",
-          "on_do":["Look at dem fine carrots.","Fresh, fresh carrots.","Fuck you, carrots.","Peace."]
+          "on_do":[
+            "Look at dem fine carrots.",
+            "Fresh, fresh carrots.",
+            "Fuck you, carrots.",
+            "\"Hey! No cussing mah carrots!\"",
+            "The shop keeper seems angry.",
+            "You win this round, carrots.",
+            "I'm watching you..."]
         },
         {  
           "handle":"Inspect le oranges",
@@ -62,14 +78,14 @@
         },
         {  
           "handle":"Inspect le cockroach on ze floor",
-          "on_do":["You take a closer look at a half-squished cockroach on the floor.","It's pretty dead.","Aaaargh!","It's almost dead..."]
+          "on_do":["I take a closer look at a half-squished cockroach on the floor.","It's pretty dead.","Aaaargh!","It's almost dead..."]
         }
       ],
       "exits":[  
         {  
           "node":"n2000",
           "handle":"Exit the shop",
-          "on_go":"I opened the door and stepped outside."
+          "on_go":"I opened the shop's door and stepped back into the streets."
         }
       ]
     }

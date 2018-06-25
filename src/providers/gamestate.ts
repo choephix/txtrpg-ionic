@@ -3,8 +3,6 @@ import { Injectable  } from '@angular/core';
 @Injectable()
 export class GameState {
   
-  public on_change:()=>void;
-  
   journal:string[] = [];
   current_journal_entry:string;
 
@@ -18,18 +16,11 @@ export class GameState {
     
     this.context = data;
     console.log("Context:",this.context);
-    
     this.addJournalEntry(this.context.start.report);
-    
     this.enterNode(this.context.start.node);
   }
 
-  getLastJournalEntry():string { return this.journal[this.journal_index] }
-  
-  private reset():void {
-    
-    this.enterNode( this.current_node_id );
-  }
+  get_Time():string { return this.context ? this.context["global"]["time"] : "?" }
   
   private enterNode( node_id:string ):void {
     
@@ -37,7 +28,17 @@ export class GameState {
     
     let node_data = this.context.nodes[node_id];
     
-    this.addJournalEntry(node_data.on_first_entry);
+    if ( "visits" in node_data && node_data["visits"] > 0 )
+    {
+      this.addJournalEntry(this,this.random(node_data["on_enter"]));
+      node_data["visits"]++
+    }
+    else
+    {
+      console.log(node_data["on_enter_first_time"])
+      this.addJournalEntry(node_data["on_enter_first_time"]);
+      node_data["visits"] = 1
+    }
     
     let options = [];
     
@@ -75,6 +76,7 @@ export class GameState {
     journalEntries = Object.assign([], journalEntries)
     
     let next:()=>void = () => {
+      this.context["global"]["time"] += 0.50 + Math.random();
       this.addJournalEntry( journalEntries.shift() );
       if ( journalEntries.length > 0 )
         this.setOptions( [ { link_text : ">>", on_chosen : ()=>next() } ] )
@@ -90,10 +92,10 @@ export class GameState {
       this.journal.push(this.current_journal_entry)
     this.current_journal_entry = s;
     console.log(":: " + s)
-    this.on_change()
   }
 
-  private random(s:string[]):string { return s[Math.floor(Math.random()*s.length)] }
+  private random(s:string[]):string 
+  { return s[Math.floor(Math.random()*s.length)] }
 
   private setOptions(list:Option[]):void {
     this.options = list

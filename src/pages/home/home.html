@@ -1,24 +1,19 @@
 <ion-content no-padding>
   
-  <!--<ion-card style="min-height: 20%">-->
-  <!--  <ion-card-content>-->
-  <!--    <ion-scroll #scr style="height:100px">-->
-  <!--      <ion-list lines>-->
-  <!--        <ion-item ion-item *ngFor="let entry of game.journal; let i = index">-->
-  <!--          <pre>{{entry}}</pre>-->
-  <!--        </ion-item>-->
-  <!--      </ion-list>-->
-  <!--    </ion-scroll>-->
-  <!--  </ion-card-content>-->
-  <!--</ion-card>-->
+<style type="scss/text">
+  @import url('https://fonts.googleapis.com/css?family=Caveat|Dancing+Script|Gaegu|Gloria+Hallelujah|Handlee|Hi+Melody|Homemade+Apple|Indie+Flower|Jim+Nightshade|Julee|Just+Another+Hand|Just+Me+Again+Down+Here|Kalam|Kristi|La+Belle+Aurore|Nothing+You+Could+Do|Reenie+Beanie|Satisfy|Swanky+and+Moo+Moo|Tangerine');
+
+  pre { 
+    /*font-family: 'Julee', cursive;*/
+    font-family: 'Caveat', cursive;
+    font-size: 20px;
+    margin: 2px;
+  }
+</style>
   
-  <!--<ion-card style="min-height: 20%">-->
-  <!--  <ion-card-content>-->
-      <!--<ion-content #jcontent style="height:100px">-->
-      <!--  <pre *ngFor="let entry of game.journal;">{{entry}}</pre>-->
-      <!--</ion-content>-->
-  <!--  </ion-card-content>-->
-  <!--</ion-card>-->
+  <ion-item>
+    <p>🕓 {{game.get_Time()}}</p>
+  </ion-item>
   
   <ion-card style="min-height: 20%">
     <ion-card-content>
@@ -37,7 +32,7 @@
       <ion-item-group>
         <ion-list>
           <ion-item ion-item *ngFor="let option of game.options; let i = index" (tap)="game.selectOption(i)">
-            {{option.link_text}}
+            <pre>{{option.link_text}}</pre>
           </ion-item>
         </ion-list>
       </ion-item-group>
