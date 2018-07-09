@@ -30,7 +30,7 @@ export class GameState {
     
     if ( "visits" in node_data && node_data["visits"] > 0 )
     {
-      this.addJournalEntry(this,this.random(node_data["on_enter"]));
+      this.addJournalEntry(this.random(node_data["on_enter"]));
       node_data["visits"]++
     }
     else

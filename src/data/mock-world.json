@@ -1,12 +1,12 @@
 {  
   "start":{  
     "node":"n1000",
-    "report":"I woke up in a room."
+    "on_start":"I woke up in a room."
   },
   "nodes":{  
     "n1000":{  
       "title":"a room",
-      "on_enter_first_time": "I find myself in a room, entirely empty but for a single wooden door at one side.",
+      "on_enter_first_time": "I find myself in a room, entirely empty but for a single wooden door at one side.\nLorem ipsum dolor sit amed.\nsssssoooowwwwwwlllllkknnbb 'ggggg'",
       "on_enter": [
         "I'm back in that empty room."
       ],
@@ -66,7 +66,7 @@
           "on_do":[
             "Look at dem fine carrots.",
             "Fresh, fresh carrots.",
-            "Fuck you, carrots.",
+            "\"Fuck you, fresh carrots.\"",
             "\"Hey! No cussing mah carrots!\"",
             "The shop keeper seems angry.",
             "You win this round, carrots.",
@@ -89,6 +89,15 @@
         }
       ]
     }
+  },
+  "convos-random":{
+    "j1":[ // pre-question
+        "- Why do you seem to be writing in that notebook of yours, like, every second of your life?",
+        "- Alwight, alright, I'm putting it down.",
+        "- I can literallily see you still writing this very conversation right now.",
+        "- I'm not, I swear. Anyway, {question}"
+        "- ...\nWhatever. {response}"
+    ]
   },
   "global":{  
     "time":0.0

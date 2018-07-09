@@ -1,6 +1,6 @@
 import { Component, AfterViewInit } from '@angular/core';
 import { GameState } from '../../providers/gamestate';
-import * as data from '../../mock-world.json';
+import * as data from '../../data/mock-world.json';
 
 @Component({
   selector: 'page-home',
