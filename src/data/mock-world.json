@@ -91,11 +91,11 @@
     }
   },
   "convos-random":{
-    "j1":[ // pre-question
+    "j1":[ 
         "- Why do you seem to be writing in that notebook of yours, like, every second of your life?",
         "- Alwight, alright, I'm putting it down.",
         "- I can literallily see you still writing this very conversation right now.",
-        "- I'm not, I swear. Anyway, {question}"
+        "- I'm not, I swear. Anyway, {question}",
         "- ...\nWhatever. {response}"
     ]
   },
